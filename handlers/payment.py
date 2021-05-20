@@ -91,9 +91,12 @@ async def put_money5(call: types.CallbackQuery):
 async def checkout(pre_checkout_query: types.PreCheckoutQuery):
     await bot.answer_pre_checkout_query(pre_checkout_query.id, ok=True,
                                         error_message="Упс. Что-то пошло не так!\nПопробуй еще раз через несколько минут.")
+    print(pre_checkout_query)
 
 @dp.message_handler(content_types=ContentTypes.SUCCESSFUL_PAYMENT)
 async def got_payment(message: types.Message):
+    print(message)
+    print(message.successful_payment.total_amount)
     numn = await db.get_counts(message.from_user.id)
     coun = await db.getTmp(message.from_user.id)
     count = numn[0] + coun[0]

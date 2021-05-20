@@ -58,5 +58,5 @@ class Data_comands:
         await self.pool.execute(sql, tmp, user_id)
 
     async def getTmp(self, user_id):
-        sql = 'SELECT tmp FROM users where user_id=$1'
-        await self.pool.fetchrow(sql, user_id)
+        sql = "SELECT tmp FROM users WHERE user_id=$1"
+        return await self.pool.fetchrow(sql, user_id)
